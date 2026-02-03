@@ -16,7 +16,10 @@ public class RegistrationTest {
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
+        //Configuration.pageLoadStrategy = "eager";
+        //Configuration.browserVersion = "128.0";
+        //Configuration.browserVersion = "130.0";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
     }
 
@@ -46,9 +49,11 @@ public class RegistrationTest {
         $("#currentAddress").setValue("Russia, Novosibirsk");
         //State and City
         $("#state").click();
-        $(byText("Haryana")).click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        //$(byText("Haryana")).click();
         $("#city").click();
-        $(byText("Karnal")).click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
+        //$(byText("Karnal")).click();
 
         $("#submit").click();
 
@@ -62,7 +67,7 @@ public class RegistrationTest {
         $(".table-responsive").shouldHave(text("Sports"));
         $(".table-responsive").shouldHave(text("zxc.png"));
         $(".table-responsive").shouldHave(text("Russia, Novosibirsk"));
-        $(".table-responsive").shouldHave(text("Haryana Karnal"));
+        $(".table-responsive").shouldHave(text("NCR Delhi"));
         $("#closeLargeModal").click();
     }
 }
